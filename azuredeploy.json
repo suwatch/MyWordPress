@@ -33,8 +33,7 @@
       "apiVersion": "2015-08-01",
       "name": "[parameters('hostingPlanName')]",
       "type": "Microsoft.Web/serverFarms",
-      //"location": "[parameters('siteLocation')]",
-      "location": "Central US (Stage)",
+      "location": "[parameters('siteLocation')]",
       "properties": {
       },
       "sku": {
@@ -46,8 +45,7 @@
       "apiVersion": "2015-08-01",
       "name": "[parameters('siteName')]",
       "type": "Microsoft.Web/Sites",
-      //"location": "[parameters('siteLocation')]",
-      "location": "Central US (Stage)",
+      "location": "[parameters('siteLocation')]",
       "dependsOn": [
         "[concat('Microsoft.Web/serverFarms/', parameters('hostingPlanName'))]"
       ],
