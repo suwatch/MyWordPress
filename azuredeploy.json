@@ -35,6 +35,7 @@
       "type": "Microsoft.Web/serverFarms",
       "location": "[parameters('siteLocation')]",
       "properties": {
+        
       },
       "sku": {
         "name": "[parameters('sku')]",
@@ -53,38 +54,16 @@
         "name": "[parameters('siteName')]",
         "serverFarmId": "[parameters('hostingPlanName')]",
         "siteConfig": {
-          "appSettings": [
-            {
-              "name": "WEBSITE_MYSQL_ENABLED",
-              "value": "1"
-            }
-          ]
+          "localMySqlEnabled": true
         }
       },
       "resources": [
         {
           "apiVersion": "2015-08-01",
-          "type": "config",
-          "name": "web",
-          "dependsOn": [
-            "[concat('Microsoft.Web/Sites/', parameters('siteName'))]"
-          ],
-          "properties": {
-            "appSettings": [
-              {
-                "name": "WEBSITE_MYSQL_ENABLED",
-                "value": "1"
-              }
-            ]
-          }
-        },
-        {
-          "apiVersion": "2015-08-01",
           "name": "web",
           "type": "sourcecontrols",
           "dependsOn": [
-            "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]",
-            "[concat('Microsoft.Web/Sites/', parameters('siteName'), '/config/web')]"
+            "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
           ],
           "properties": {
             "RepoUrl": "[parameters('repoUrl')]",
